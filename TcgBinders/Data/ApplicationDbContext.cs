@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TcgBinders.Models;
 
@@ -12,4 +12,10 @@ public class ApplicationDbContext : DbContext
     }
 
     public DbSet<Card> Cards { get; set; }
+
+    public DbSet<Set> Sets { get; set; }
+
+    public DbSet<TcgGames> TcgGames { get; set; }
+
+    public DbSet<User> Users { get; set; }
 }
