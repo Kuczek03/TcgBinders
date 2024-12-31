@@ -34,7 +34,7 @@ namespace TcgBinders.Controllers
             }
 
             var card = await _context.Cards
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (card == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace TcgBinders.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Rarity")] Card card)
+        public async Task<IActionResult> Create([Bind("id,name,rarity,set_tag,no_in_set")] Card card)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace TcgBinders.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Rarity")] Card card)
+        public async Task<IActionResult> Edit(int id, [Bind("id,name,rarity,set_tag,no_in_set")] Card card)
         {
-            if (id != card.Id)
+            if (id != card.id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace TcgBinders.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CardExists(card.Id))
+                    if (!CardExists(card.id))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace TcgBinders.Controllers
             }
 
             var card = await _context.Cards
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (card == null)
             {
                 return NotFound();
@@ -151,7 +151,7 @@ namespace TcgBinders.Controllers
 
         private bool CardExists(int id)
         {
-            return _context.Cards.Any(e => e.Id == id);
+            return _context.Cards.Any(e => e.id == id);
         }
     }
 }
