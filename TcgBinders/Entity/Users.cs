@@ -1,6 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace TcgBinders.Models;
+
+[Index(nameof(username), IsUnique = true)]
+[Index(nameof(email), IsUnique = true)]
 
 public class Users
 {
@@ -19,13 +23,6 @@ public class Users
     [Display(Name = "Password")]
     public string password { get; set; }
     
-    [Required(ErrorMessage = "Password confirmation required")]
-    [StringLength(100, MinimumLength = 8)]
-    [DataType(DataType.Password)]
-    [Display(Name = "Confirm password")]
-    [Compare("password", ErrorMessage = "Passwords do not match")]
-    public string confirm_password { get; set; }
-    
     [Required(ErrorMessage = "Email address required")]
     [EmailAddress]
     [Display(Name = "Email")]
@@ -34,11 +31,11 @@ public class Users
     [Required(ErrorMessage = "Creation date required")]
     [DataType(DataType.Date)]
     [Display(Name = "Account creation date")]
-    public DateTime created_at { get; set; }
+    public DateTime created_at { get; set; } = DateTime.Now;
     
     [DataType(DataType.Date)]
     [Display(Name = "Accounts last update")]
-    public DateTime updated_at { get; set; }
+    public DateTime updated_at { get; set; } = DateTime.Now;
     
     [Display(Name = "Status")]
     public int is_active { get; set; }

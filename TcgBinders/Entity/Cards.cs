@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 
 namespace TcgBinders.Models;
@@ -23,10 +24,10 @@ public class Cards
     [StringLength(20)]
     [Display(Name = "Type")]
     public string type { get; set; }
-    
+
     [StringLength(300)]
     [Display(Name = "Card description")]
-    public string description { get; set; }
+    public string description { get; set; } = String.Empty;
     
     [StringLength(10)]
     [Required(ErrorMessage = "Card number in set is required")]

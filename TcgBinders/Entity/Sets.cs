@@ -1,8 +1,12 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace TcgBinders.Models;
+
+[Index(nameof(name), IsUnique = true)]
+[Index(nameof(tag), IsUnique = true)]
 
 public class Sets
 {
@@ -14,7 +18,7 @@ public class Sets
     [Display(Name = "Set name")]
     [Required(ErrorMessage = "Set name required")]
     public string name { get; set; }
-    
+
     [StringLength(100)]
     [Display(Name = "Set Description")]
     public string description { get; set; }
@@ -28,7 +32,7 @@ public class Sets
     [Display(Name = "Number of cards in set")]
     [Required(ErrorMessage = "Number of cards required")]
     public int no_of_cards { get; set; }
-    
+
     [StringLength(10)]
     [DataType(DataType.ImageUrl)]
     public string image { get; set; }

@@ -1,6 +1,11 @@
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
+using Microsoft.EntityFrameworkCore;
 
 namespace TcgBinders.Models;
+
+[Index(nameof(name), IsUnique = true)]
+[Index(nameof(tag), IsUnique = true)]
 
 public class Games
 {
@@ -17,7 +22,7 @@ public class Games
     [Display(Name = "Game tag")]
     [Required(ErrorMessage = "Game tag required")]
     public string tag { get; set; }
-    
+
     [StringLength(300)]
     [Display(Name = "Game description")]
     public string description { get; set; }
