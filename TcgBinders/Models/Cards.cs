@@ -28,9 +28,11 @@ public class Cards
     [Display(Name = "Card description")]
     public string description { get; set; }
     
+    [StringLength(10)]
     [Required(ErrorMessage = "Card number in set is required")]
     public int no_in_set { get; set; }
     
+    [StringLength(100)]
     [DataType(DataType.ImageUrl)]
     public string image { get; set; }
 }
