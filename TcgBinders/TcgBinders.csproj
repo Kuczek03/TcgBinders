@@ -31,4 +31,27 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Card\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Card\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Card\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Card\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Card\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Game\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Game\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Game\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Game\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Game\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Set\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Set\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Set\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Set\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Set\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\User\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\User\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\User\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\User\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\User\Index.cshtml" />
+    </ItemGroup>
+
 </Project>
