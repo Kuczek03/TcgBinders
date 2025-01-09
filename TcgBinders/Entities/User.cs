@@ -1,12 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
-namespace TcgBinders.Models;
+namespace TcgBinders.Entities;
 
 [Index(nameof(username), IsUnique = true)]
 [Index(nameof(email), IsUnique = true)]
 
-public class Users
+public class User
 {
     [Key]
     public int id { get; set; }

@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 
-namespace TcgBinders.Models;
+namespace TcgBinders.Entities;
 
-public class Cards
+public class Card
 {
     [Key]
     [Display(Name = "Card Id number")]

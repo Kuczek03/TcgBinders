@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TcgBinders.Data;
-using TcgBinders.Models;
+using TcgBinders.Entities;
 
 namespace TcgBinders.Controllers
 {
@@ -19,13 +14,13 @@ namespace TcgBinders.Controllers
             _context = context;
         }
 
-        // GET: Set
+        // GET
         public async Task<IActionResult> Index()
         {
             return View(await _context.Sets.ToListAsync());
         }
 
-        // GET: Set/Details/5
+        // GET
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,15 +38,13 @@ namespace TcgBinders.Controllers
             return View(sets);
         }
 
-        // GET: Set/Create
+        // GET
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Set/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,name,description,tag,no_of_cards,image,game_tag")] Sets sets)
@@ -65,7 +58,7 @@ namespace TcgBinders.Controllers
             return View(sets);
         }
 
-        // GET: Set/Edit/5
+        // GET
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,9 +74,7 @@ namespace TcgBinders.Controllers
             return View(sets);
         }
 
-        // POST: Set/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("id,name,description,tag,no_of_cards,image,game_tag")] Sets sets)
@@ -116,7 +107,7 @@ namespace TcgBinders.Controllers
             return View(sets);
         }
 
-        // GET: Set/Delete/5
+        // GET
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +125,7 @@ namespace TcgBinders.Controllers
             return View(sets);
         }
 
-        // POST: Set/Delete/5
+        // POST
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

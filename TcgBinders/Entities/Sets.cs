@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace TcgBinders.Models;
+namespace TcgBinders.Entities;
 
 [Index(nameof(name), IsUnique = true)]
 [Index(nameof(tag), IsUnique = true)]

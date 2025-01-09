@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TcgBinders.Data;
-using TcgBinders.Models;
+using TcgBinders.Entities;
 
 namespace TcgBinders.Controllers
 {
@@ -19,13 +14,13 @@ namespace TcgBinders.Controllers
             _context = context;
         }
 
-        // GET: Game
+        // GET
         public async Task<IActionResult> Index()
         {
             return View(await _context.Games.ToListAsync());
         }
 
-        // GET: Game/Details/5
+        // GET
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,18 +38,16 @@ namespace TcgBinders.Controllers
             return View(games);
         }
 
-        // GET: Game/Create
+        // GET
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Game/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,name,tag,description,image")] Games games)
+        public async Task<IActionResult> Create([Bind("id,name,tag,description,image")] Game games)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +58,7 @@ namespace TcgBinders.Controllers
             return View(games);
         }
 
-        // GET: Game/Edit/5
+        // GET
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,12 +74,10 @@ namespace TcgBinders.Controllers
             return View(games);
         }
 
-        // POST: Game/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,name,tag,description,image")] Games games)
+        public async Task<IActionResult> Edit(int id, [Bind("id,name,tag,description,image")] Game games)
         {
             if (id != games.id)
             {
@@ -116,7 +107,7 @@ namespace TcgBinders.Controllers
             return View(games);
         }
 
-        // GET: Game/Delete/5
+        // GET
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +125,7 @@ namespace TcgBinders.Controllers
             return View(games);
         }
 
-        // POST: Game/Delete/5
+        // POST
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
