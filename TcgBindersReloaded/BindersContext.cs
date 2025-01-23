@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TcgBindersReloaded.Entities;
 
 namespace TcgBindersReloaded;
 
@@ -12,4 +13,6 @@ public class BindersContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
     }
+    
+    public DbSet<User> Users { get; set; }
 }
