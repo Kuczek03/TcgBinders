@@ -39,9 +39,7 @@ public class AccountController : Controller
             account.Email = model.Email;
             account.Username = model.Username;
             account.Password = model.Password;
-            account.CreationDate = DateTime.Now;
-            account.Role = "User";
-
+            account.CreationDate = DateOnly.FromDateTime(DateTime.Now);
             try
             {
                 _context.Users.Add(account);
@@ -55,7 +53,7 @@ public class AccountController : Controller
                 ModelState.AddModelError("", "Username, email or password already exists.");
                 return View(model);
             }
-            return View();
+            return RedirectToAction("Login");
         }
         return View(model);
     }
@@ -82,7 +80,7 @@ public class AccountController : Controller
                 {
                     new Claim(ClaimTypes.Email, user.Email),
                     new Claim(ClaimTypes.Name, user.Username),
-                    new Claim(ClaimTypes.Role, user.Role),
+                    new Claim(ClaimTypes.Role, "User"),
                 };
                 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
