@@ -15,4 +15,7 @@ public class BindersContext : DbContext
     }
     
     public DbSet<User> Users { get; set; }
+    public DbSet<Card> Cards { get; set; }
+    public DbSet<CardSet> CardSets { get; set; }
+    public DbSet<CardGame> CardGames { get; set; }
 }
