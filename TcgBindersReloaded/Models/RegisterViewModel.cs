@@ -20,7 +20,7 @@ public class RegisterViewModel
     [StringLength(100, MinimumLength = 8)]
     [DataType(DataType.Password)]
     [Display(Name = "Confirm password")]
-    [Compare("password", ErrorMessage = "Passwords do not match")]
+    [Compare("Password", ErrorMessage = "Passwords do not match")]
     public string ConfirmPassword { get; set; }
 
     [Required(ErrorMessage = "Email address required")]
