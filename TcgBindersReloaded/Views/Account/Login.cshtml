@@ -1,0 +1,37 @@
+@model TcgBindersReloaded.Models.LoginViewModel
+
+@{
+ViewData["Title"] = "Login";
+Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="heading">SignIn to your account</div>
+    <form class="form" asp-action="Login">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="input-field">
+            <input required="" autocomplete="off" asp-for="UsernameEmail" class="form-control"/>
+            <label asp-for="UsernameEmail">Email or Username</label>
+            <span asp-validation-for="UsernameEmail" class="text-danger"></span>
+        </div>
+
+        <div class="input-field">
+            <input required="" autocomplete="off" type="password" asp-for="Password" class="form-control"/>
+            <label asp-for="Password">Password</label>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="btn-container">
+            <button type="submit" class="btn">Submit</button>
+            <div class="acc-text">
+                New here ?
+                <a asp-action="Register" style="color: #0000ff; cursor: pointer;">Create Account</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
