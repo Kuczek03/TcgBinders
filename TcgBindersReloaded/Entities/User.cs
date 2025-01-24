@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices.JavaScript;
 using Microsoft.EntityFrameworkCore;
 
 namespace TcgBindersReloaded.Entities;
@@ -8,7 +9,8 @@ namespace TcgBindersReloaded.Entities;
 
 public class User
 {
-    [Key] public int Id { get; set; }
+    [Key] 
+    public int Id { get; set; }
 
     [Required(ErrorMessage = "Username required")]
     [StringLength(100, MinimumLength = 4)]
@@ -30,9 +32,6 @@ public class User
     [Required(ErrorMessage = "Creation date required")]
     [DataType(DataType.Date)]
     [Display(Name = "Account creation date")]
-    public DateTime CreationDate { get; set; }
-    
-    [Required(ErrorMessage = "User Role required")]
-    [Display(Name = "User Role")]
-    public string Role { get; set; }
+    public DateOnly CreationDate { get; set; }
+
 }
