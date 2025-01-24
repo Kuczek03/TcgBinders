@@ -31,4 +31,8 @@ public class User
     [DataType(DataType.Date)]
     [Display(Name = "Account creation date")]
     public DateTime CreationDate { get; set; }
+    
+    [Required(ErrorMessage = "User Role required")]
+    [Display(Name = "User Role")]
+    public string Role { get; set; }
 }

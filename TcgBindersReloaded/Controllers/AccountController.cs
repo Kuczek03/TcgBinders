@@ -40,6 +40,7 @@ public class AccountController : Controller
             account.Username = model.Username;
             account.Password = model.Password;
             account.CreationDate = DateTime.Now;
+            account.Role = "User";
 
             try
             {
@@ -81,7 +82,7 @@ public class AccountController : Controller
                 {
                     new Claim(ClaimTypes.Email, user.Email),
                     new Claim(ClaimTypes.Name, user.Username),
-                    new Claim(ClaimTypes.Role, "User"),
+                    new Claim(ClaimTypes.Role, user.Role),
                 };
                 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
