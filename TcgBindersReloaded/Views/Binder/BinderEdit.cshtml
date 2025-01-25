@@ -1,0 +1,20 @@
+@model TcgBindersReloaded.Models.BinderViewModel
+
+@{
+    ViewData["Title"] = "Edit Binder";
+}
+
+<h1>Edit Binder</h1>
+
+<form asp-action="BinderEdit" method="post">
+    <input type="hidden" asp-for="UserId" />
+
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Save</button>
+    <a asp-action="BinderList" class="btn btn-secondary mt-3">Cancel</a>
+</form>
