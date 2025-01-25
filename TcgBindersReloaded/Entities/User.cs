@@ -33,5 +33,8 @@ public class User
     [DataType(DataType.Date)]
     [Display(Name = "Account creation date")]
     public DateOnly CreationDate { get; set; }
+    
+    public ICollection<Binder> Binders { get; set; } = new List<Binder>();
+    public ICollection<CollectionCards> UserCollectionCards { get; set; } = new List<CollectionCards>();
 
 }

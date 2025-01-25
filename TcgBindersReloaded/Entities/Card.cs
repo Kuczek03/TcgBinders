@@ -39,4 +39,7 @@ public class Card
     [StringLength(100)]
     [DataType(DataType.ImageUrl)]
     public string Image { get; set; }
+    
+    public ICollection<BinderCards> Bindes { get; set; } = new List<BinderCards>();
+    public ICollection<CollectionCards> CollectionCardsByUsers { get; set; } = new List<CollectionCards>();
 }
