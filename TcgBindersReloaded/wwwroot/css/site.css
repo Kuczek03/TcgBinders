@@ -20,3 +20,26 @@ html {
 body {
   margin-bottom: 60px;
 }
+.no-underline {
+  text-decoration: none;
+  color: inherit;
+}
+
+.no-underline:hover {
+  color: #0f3cee; 
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.main_color{
+  color: #0f3cee;
+}
+.navbar-brand.main_color {
+  color: #0f3cee !important;
+}
+.navbar-brand.mainB_color {
+  font-weight: bold;
+  color: #0f3cee !important;
+ }
