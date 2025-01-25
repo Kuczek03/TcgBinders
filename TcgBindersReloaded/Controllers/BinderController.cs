@@ -167,6 +167,36 @@ public class BinderController : Controller
 
          return View(model);
      }
+     
+     [HttpGet]
+     public async Task<IActionResult> BinderDelete(int id)
+     {
+         var binder = await _context.Binders.FindAsync(id);
+         if (binder == null)
+         {
+             return NotFound();
+         }
 
-    
+         return View(binder);
+     }
+
+     [HttpPost, ActionName("BinderDelete")]
+     [ValidateAntiForgeryToken]
+     public async Task<IActionResult> BinderDeleteConfirmed(int id)
+     {
+         var binder = await _context.Binders.FindAsync(id);
+         if (binder == null)
+         {
+             return NotFound();
+         }
+
+         _context.Binders.Remove(binder);
+         await _context.SaveChangesAsync();
+
+         TempData["SuccessMessage"] = "Binder deleted successfully.";
+         return RedirectToAction("BinderList");
+     }
+
+     
+     
 }
