@@ -115,4 +115,58 @@ public class BinderController : Controller
         }
         return View(model);
     }
+    
+     [HttpGet]
+     public async Task<IActionResult> BinderEdit(int id)
+     {
+         var binder = await _context.Binders.FindAsync(id);
+         if (binder == null)
+         {
+             return NotFound();
+         }
+         var user = HttpContext.User.Identity.Name;
+         
+         var userId = _context.Users.FirstOrDefault(u => u.Username == user)?.Id;
+         var binderViewModel = new BinderViewModel
+         {
+             Name = binder.Name,
+             UserId = userId.Value
+         };
+
+         return View(binderViewModel);
+     }
+
+     [HttpPost]
+     [ValidateAntiForgeryToken]
+     public async Task<IActionResult> BinderEdit(int id, BinderViewModel model)
+     {
+         if (ModelState.IsValid)
+         {
+             var binder = await _context.Binders.FindAsync(id);
+             
+             if (binder == null)
+             {
+                 return NotFound();
+             }
+
+             binder.Name = model.Name;
+             try
+             {
+                 _context.Update(binder);
+                 await _context.SaveChangesAsync();
+                 ModelState.Clear();
+             }
+             catch (Exception e)
+             {
+                 Console.WriteLine(e);
+                 return View(model);
+             }
+             TempData["SuccessMessage"] = "Binder updated successfully.";
+             return RedirectToAction("BinderList");
+         }
+
+         return View(model);
+     }
+
+    
 }
