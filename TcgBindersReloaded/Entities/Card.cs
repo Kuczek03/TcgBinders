@@ -26,7 +26,6 @@ public class Card
     [Display(Name = "Card description")]
     public string Description { get; set; } = String.Empty;
     
-    [StringLength(10)]
     [Display(Name = "Number in set")]
     [Required(ErrorMessage = "Card number in set is required")]
     public int NoInSet { get; set; }
