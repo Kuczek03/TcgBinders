@@ -23,6 +23,7 @@ public class BinderController : Controller
         var binder = _context.Binders
             .Include(p => p.User)
             .Include(p => p.BCards)
+            .ThenInclude(p=>p.Card)
             .FirstOrDefault(p => p.User.Username == user);
 
         if (binder == null)
@@ -35,24 +36,6 @@ public class BinderController : Controller
         }
     }
     
-    // GET
-    public async Task<IActionResult> UserCards()
-    {
-        var user = HttpContext.User.Identity.Name;
-        var binder = _context.CollectionCards
-            .Include(p => p.User)
-            .Include(p => p.Card)
-            .FirstOrDefault(p => p.User.Username == user);
-
-        if (binder == null)
-        {
-            return View(new List<Card>());
-        }
-        else
-        {
-            return View(binder.Card);
-        }
-    }
     
     // GET
     public async Task<IActionResult> BinderList()
