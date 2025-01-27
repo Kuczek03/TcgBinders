@@ -1,8 +1,31 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4" >Welcome to TcgBindersReloaded</h1>
-    <p>Manage your collection right now!!!</p>
+    <h1 class="display-4 text-bold">Welcome to TcgBindersReloaded</h1>
+    <p class="lead">Manage your collection of trading cards with ease, organize, trade, and discover new sets!</p>
+
+    @* <div class="my-4 d-flex justify-content-center"> *@
+    @*     <img src="~/images/games/pkmn.png" alt="Trading cards" class="img-fluid rounded" width="300" /> *@
+    @* </div> *@
+
+    <div class="text-left mt-4">
+        <h3 >What is TcgBindersReloaded?</h3>
+        <p>This is a web app designed for collectors to manage their trading card collection. Whether you're organizing your cards by game, set, or rarity, TcgBindersReloaded offers a simple yet powerful interface to help you track everything in one place. The app allows you to:</p>
+        <ul>
+            <ul>Browse and filter through different sets and games.</ul>
+            <ul>Track your collection and view your cards' status (e.g., for trade, wanted, etc.).</ul>
+            <ul>Trade cards and manage offers from other collectors.</ul>
+        </ul>
+
+        <div class="my-4 d-flex justify-content-center">
+            <img src="~/images/binder1.webp" alt="Card organization" class="img-fluid rounded" width="300" />
+            <img src="~/images/p_giph.gif" alt="Trading cards gif" class="img-fluid rounded mt-2" width="300" />
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/CardGame" class="btn btn-primary btn-lg">Get Started</a>
+    </div>
 </div>
