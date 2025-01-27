@@ -19,6 +19,7 @@ public class AccountController : Controller
     }
     
     // GET
+    [Authorize]
     public IActionResult Users()
     {
         return View(_context.Users.ToList());
