@@ -1,0 +1,28 @@
+@model IEnumerable<TcgBindersReloaded.Entities.CollectionCards>
+
+@{
+    ViewData["Title"] = "My Collection";
+}
+
+<h1>My Collection</h1>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card shadow-sm">
+                <img src="/@item.Card.Image" class="card-img-top" alt="@item.Card.Name" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Card.Name</h5>
+                    <p class="card-text"><strong>Rarity:</strong> @item.Card.Rarity ||
+                        <strong>Type:</strong> @item.Card.Type</p>
+                    <p class="card-text"><strong>Set:</strong> @item.Card.SetTag ||
+                        <strong>No:</strong> @item.Card.NoInSet</p>
+                    
+                    <a asp-controller="Card" asp-action="Details" asp-route-id="@item.CardId" class="btn btn-sm btn-primary">Details</a>
+                    <a asp-action="RemoveFromCollection" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Remove</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

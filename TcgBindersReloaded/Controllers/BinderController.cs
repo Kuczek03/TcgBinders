@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using TcgBindersReloaded.Entities;
 using TcgBindersReloaded.Models;
 
@@ -16,7 +17,7 @@ public class BinderController : Controller
         _context = context;
     }
 
-    // GET
+    //GET
     public async Task<IActionResult> BinderCards()
     {
         var user = HttpContext.User.Identity.Name;
@@ -25,7 +26,6 @@ public class BinderController : Controller
             .Include(p => p.BCards)
             .ThenInclude(p=>p.Card)
             .FirstOrDefault(p => p.User.Username == user);
-
         if (binder == null)
         {
             return View(new List<BinderCards>());
@@ -36,6 +36,34 @@ public class BinderController : Controller
         }
     }
     
+    public async Task AddCardToCollectionAsync(int cardId)
+    {
+        var user = HttpContext.User.Identity.Name;
+        var userId = _context.Users.FirstOrDefault(u => u.Username == user)?.Id;
+        
+        using var command = new NpgsqlCommand("CALL AddCardToCollection(@UserId, @CardId)");
+        command.Parameters.AddWithValue("UserId", userId.Value);
+        command.Parameters.AddWithValue("CardId", cardId);
+
+        await command.ExecuteNonQueryAsync();
+    }
+    
+    public async Task<IActionResult> Collection()
+    {
+         
+        var user = HttpContext.User.Identity.Name;
+        var userId = _context.Users.FirstOrDefault(u => u.Username == user)?.Id;
+        
+        
+            
+            var collection = await _context.CollectionCards
+                .Include(c => c.Card) // Załaduj powiązaną kartę
+                .Where(c => c.UserId == userId) // Filtruj po użytkowniku
+                .ToListAsync();
+
+            return View(collection);
+        
+    }
     
     // GET
     public async Task<IActionResult> BinderList()
@@ -179,7 +207,38 @@ public class BinderController : Controller
          TempData["SuccessMessage"] = "Binder deleted successfully.";
          return RedirectToAction("BinderList");
      }
+     
+     public async Task AddCardToBinderProcedure(int binderId, int cardId)
+     {
+         var command = $"CALL AddCardToBinder({binderId}, {cardId});";
+         await _context.Database.ExecuteSqlRawAsync(command);
+     }
+     
+     // [HttpGet]
+     // public async Task<IActionResult> GetUserBinders()
+     // {
+     //     var user = HttpContext.User.Identity.Name;
+     //     var userId = _context.Users.FirstOrDefault(u => u.Username == user)?.Id;
+     //     var binders = await _context.Binders
+     //         .Where(b => b.UserId == userId)
+     //         .Select(b => new { b.Id, b.Name })
+     //         .ToListAsync();
+     //
+     //     return Json(binders);
+     // }
+     
+     [HttpPost]
+     public async Task<IActionResult> AddCardToCollection(int cardId)
+     {
+         var user = HttpContext.User.Identity.Name;
+         var userId = _context.Users.FirstOrDefault(u => u.Username == user)?.Id;
+         
+         await _context.Database.ExecuteSqlInterpolatedAsync(
+             $"SELECT AddCardToBinder({userId}, {cardId})");
 
-     
-     
+         return RedirectToAction("Index", "Card");
+     }
+
+    
+
 }

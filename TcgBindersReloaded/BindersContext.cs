@@ -13,7 +13,6 @@ public class BindersContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         
-        // Konfiguracja relacji wiele do wielu dla PlaylistSong
         modelBuilder.Entity<BinderCards>()
             .HasOne(bc => bc.Binder)
             .WithMany(b => b.BCards)
@@ -23,8 +22,7 @@ public class BindersContext : DbContext
             .HasOne(bc => bc.Card)
             .WithMany(c => c.Bindes)
             .HasForeignKey(bc => bc.CardId);
-
-        // Konfiguracja relacji wiele do wielu dla UserFavorite
+        
         modelBuilder.Entity<CollectionCards>()
             .HasOne(cc => cc.User)
             .WithMany(u => u.UserCollectionCards)

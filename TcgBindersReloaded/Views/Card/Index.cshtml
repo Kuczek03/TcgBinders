@@ -1,7 +1,7 @@
 @model IEnumerable<TcgBindersReloaded.Entities.Card>
 
 @{
-ViewData["Title"] = "Cards";
+    ViewData["Title"] = "Cards";
 }
 
 <h1 class="text-center text-3xl font-bold mb-6">Cards</h1>
@@ -9,24 +9,28 @@ ViewData["Title"] = "Cards";
 <p>
     <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
+
 <div class="row">
     @foreach (var item in Model)
     {
-    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-        <div class="card shadow-sm">
-            <img src="@item.Image" class="card-img-top" alt="@item.Name" style="height: 200px; object-fit: cover;">
-            <div class="card-body">
-                <h5 class="card-title">@item.Name</h5>
-                <p class="card-text"><strong>Rarity:</strong> @item.Rarity ||
-                    <strong>Type:</strong> @item.Type</p>
-                <p class="card-text"><strong>Set:</strong> @item.SetTag || 
-                    <strong>No:</strong> @item.NoInSet</p>
-                <p class="card-text">@item.Description</p>
-                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Details</a>
-                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
-                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card shadow-sm position-relative">
+                <img src="@item.Image" class="card-img-top" alt="@item.Name" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    <p class="card-text"><strong>Rarity:</strong> @item.Rarity || <strong>Type:</strong> @item.Type</p>
+                    <p class="card-text"><strong>Set:</strong> @item.SetTag || <strong>No:</strong> @item.NoInSet</p>
+                    <p class="card-text">@item.Description</p>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                    
+                    <form asp-controller="Binder" asp-action="AddCardToCollection" method="post" class="d-inline">
+                        <input type="hidden" name="cardId" value="@item.Id" />
+                        <button type="submit" class="btn btn-sm btn-success">+ Add to Collection</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
     }
 </div>
