@@ -1,10 +1,11 @@
 <ul class="nav navbar-nav navbar-right">
     @if (Context.User.Identity.Name != null) {
         <li class="nav-item">
-            <a class="nav-link" asp-controller="Account" asp-action="SecurePage" style="color: #0f3cee; font-weight: bold;"> Hello @Context.User.Identity.Name ! </a>
+            <a class="nav-link" style="color: #0f3cee; font-weight: bold;"> Hello @Context.User.Identity.Name ! </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Binder" asp-action="BinderList">| Your Binders |</a>
+            <a class="nav-link text-dark" asp-controller="Binder" asp-action="Collection">| Your Collection |</a>
+            @* <a class="nav-link text-dark" asp-controller="Binder" asp-action="BinderList">| Your Binders |</a> *@
         </li>
         <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
             <li>

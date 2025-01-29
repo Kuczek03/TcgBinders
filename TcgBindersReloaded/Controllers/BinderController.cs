@@ -57,8 +57,8 @@ public class BinderController : Controller
         
             
             var collection = await _context.CollectionCards
-                .Include(c => c.Card) // Załaduj powiązaną kartę
-                .Where(c => c.UserId == userId) // Filtruj po użytkowniku
+                .Include(c => c.Card) 
+                .Where(c => c.UserId == userId) 
                 .ToListAsync();
 
             return View(collection);
