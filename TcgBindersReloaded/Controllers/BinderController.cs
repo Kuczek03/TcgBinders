@@ -233,12 +233,36 @@ public class BinderController : Controller
          var user = HttpContext.User.Identity.Name;
          var userId = _context.Users.FirstOrDefault(u => u.Username == user)?.Id;
          
-         await _context.Database.ExecuteSqlInterpolatedAsync(
-             $"SELECT AddCardToBinder({userId}, {cardId})");
+         await _context.Database.ExecuteSqlRawAsync($"CALL AddCardToBinder({userId}, {cardId})");
 
          return RedirectToAction("Index", "Card");
      }
 
-    
+     [HttpPost]
+     public async Task<IActionResult> RemoveCardFromCollection([FromForm] int cardId)
+     {
+         var user = HttpContext.User.Identity.Name;
+         var userId = _context.Users.FirstOrDefault(u => u.Username == user)?.Id;
+
+         // await _context.Database.ExecuteSqlRawAsync($"CALL RemoveCardFromCollection({userId}, {cardId})");
+         if (userId == 0)
+         {
+             return BadRequest("User not authenticated.");
+         }
+
+         try
+         {
+             await _context.Database.ExecuteSqlRawAsync($"CALL RemoveCardFromCollection({userId}, {cardId})");
+             await _context.SaveChangesAsync();
+         }
+         catch (Exception ex)
+         {
+             Console.WriteLine($"Error removing card: {ex.Message}");
+             return StatusCode(500, "Database error.");
+         }
+
+         return RedirectToAction("Collection");
+     }
+
 
 }

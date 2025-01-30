@@ -67,7 +67,7 @@ public class AccountController : Controller
     
     // POST
     [HttpPost]
-    public IActionResult Login(LoginViewModel model)
+    public async Task< IActionResult> Login(LoginViewModel model)
     {
         if (ModelState.IsValid)
         {
@@ -87,7 +87,9 @@ public class AccountController : Controller
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
                 
-                return RedirectToAction("Users");
+                await _context.Database.ExecuteSqlRawAsync($"CALL LogUserLogin({user.Id})");
+                
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -97,8 +99,11 @@ public class AccountController : Controller
         return View(model);
     }
 
-    public IActionResult Logout()
+    public async Task<IActionResult> Logout()
     {
+        var user = HttpContext.User.Identity.Name;
+        var userId = _context.Users.FirstOrDefault(u => u.Username == user)?.Id;
+        await _context.Database.ExecuteSqlRawAsync($"CALL LogUserLogout({userId})");
         HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         return RedirectToAction("Index", "Home");
     }
