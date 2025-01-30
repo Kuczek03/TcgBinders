@@ -41,4 +41,5 @@ public class BindersContext : DbContext
     public DbSet<Binder> Binders { get; set; }
     public DbSet<BinderCards> BinderCards { get; set; }
     public DbSet<CollectionCards> CollectionCards { get; set; }
+    public DbSet<UserLogs> UserLogs { get; set; }
 }
