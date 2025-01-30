@@ -19,11 +19,31 @@ public class AccountController : Controller
     }
     
     // GET
-    [Authorize]
+    [Authorize(Policy = "AdminOnly")]
+    [HttpGet("Admin/Users")]
     public IActionResult Users()
     {
         return View(_context.Users.ToList());
     }
+    
+    [Authorize(Policy = "AdminOnly")]
+    [HttpGet("Admin/UserLogs")]
+    public IActionResult UserLogs()
+    {
+        return View(_context.UserLogs.ToList());
+    }
+    // [Authorize(Policy = "AdminOnly")]
+    // public IActionResult UserLogs(string search)
+    // {
+    //     var logs = _context.UserLogs.AsQueryable();
+    //
+    //     if (!string.IsNullOrEmpty(search))
+    //     {
+    //         logs = logs.Where(l => l.User.Id.Equals(search) || l.Message.Contains(search));
+    //     }
+    //
+    //     return View(logs.ToList());
+    //}
     
     // GET
     public IActionResult Register()
@@ -41,6 +61,7 @@ public class AccountController : Controller
             account.Username = model.Username;
             account.Password = model.Password;
             account.CreationDate = DateOnly.FromDateTime(DateTime.Now);
+            account.Role = "User";
             try
             {
                 _context.Users.Add(account);
@@ -81,7 +102,7 @@ public class AccountController : Controller
                 {
                     new Claim(ClaimTypes.Email, user.Email),
                     new Claim(ClaimTypes.Name, user.Username),
-                    new Claim(ClaimTypes.Role, "User"),
+                    new Claim(ClaimTypes.Role, user.Role),
                 };
                 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

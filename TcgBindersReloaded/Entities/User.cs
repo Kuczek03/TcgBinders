@@ -34,6 +34,9 @@ public class User
     [Display(Name = "Account creation date")]
     public DateOnly CreationDate { get; set; }
     
+    [Required(ErrorMessage = "User Role required")]
+    public string Role { get; set; }
+    
     public ICollection<Binder> Binders { get; set; } = new List<Binder>();
     public ICollection<CollectionCards> UserCollectionCards { get; set; } = new List<CollectionCards>();
 
