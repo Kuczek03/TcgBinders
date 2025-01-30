@@ -5,11 +5,12 @@ ViewData["Title"] = "Card Sets";
 }
 
 <h1 class="text-center text-3xl font-bold mb-6">Card Sets</h1>
-
-<p>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
-</p>
-
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New Card Set</a>
+    </p>
+}
 <div class="row">
     @foreach (var item in Model)
     {
@@ -24,11 +25,14 @@ ViewData["Title"] = "Card Sets";
                     <li class="list-group-item"><strong>No. of Cards:</strong> @item.NoOfCards</li>
                     <li class="list-group-item"><strong>Game Tag:</strong> @item.GameTag</li>
                 </ul>
-                <div class="mt-3 text-center">
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
-                </div>
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="mt-3 text-center">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </div>
+                }
             </div>
         </div>
     </div>
