@@ -1,3 +1,4 @@
+# TcgBinders
 # Aplikacja do Zarządzania Kartami Kolekcjonerskimi
 
 ## 📋 Opis projektu
@@ -18,7 +19,7 @@ Aplikacja służy do zarządzania kolekcją kart kolekcjonerskich. Umożliwia u�
 - **IDE:** JetBrains Rider
 - **Kontrola wersji:** Git
 - **Testowanie API:** Postman
-- 
+ 
 ## 📦 Instrukcja instalacji i uruchomienia
 
 ### Wymagania wstępne
