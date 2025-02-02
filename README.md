@@ -72,8 +72,8 @@ Aplikacja służy do zarządzania kolekcją kart kolekcjonerskich. Umożliwia u�
 - Problemy z mapowaniem typów danych (BOOL vs INT)
 - Wyzwania związane z optymalizacją wydajności przy dużej liczbie użytkowników
 
-## 💡 Wnioski
-Projekt umożliwił zdobycie praktycznego doświadczenia z ASP.NET Core, PostgreSQL i zarządzaniem procedurami składowanymi. Zaimplementowano skuteczny system uwierzytelniania oraz zarządzania uprawnieniami użytkowników. Planowane dalsze usprawnienia to:
+## 💡 Rozwój
+Planowane dalsze usprawnienia to:
 
 - Integracja z zewnętrznymi API
 - Rozbudowa interfejsu użytkownika
@@ -81,6 +81,4 @@ Projekt umożliwił zdobycie praktycznego doświadczenia z ASP.NET Core, Postgre
 
 ---
 
-📬 **Kontakt:** [Twoje dane kontaktowe tutaj]
-
-🌟 Dziękujemy za zainteresowanie projektem!
+🌟 Dziękuje za zainteresowanie projektem!
